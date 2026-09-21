@@ -1,6 +1,8 @@
 import './CheckOut.css'
 import './checkout-header.css'
-export function CheckOut(){
+export function CheckOut(props){
+        const cart = props.cart;
+
 return (
     <>
     <title>Checkout</title>
