@@ -18,7 +18,7 @@ useEffect(()=>{
     <Routes>
       <Route path="/" element={<HomePage  cart={cartItems}/>} />
       <Route path="/checkout" element={<CheckOut cart={cartItems} />} />
-      <Route path="/orders" element={<OrdersPage/>} />
+      <Route path="/orders" element={<OrdersPage cart={cartItems}/>} />
       <Route path="/tracking" element={<TrackingPage/>} />
     </Routes>
   )
