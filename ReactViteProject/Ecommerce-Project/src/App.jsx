@@ -7,17 +7,21 @@ import {TrackingPage} from './Pages/TrackingPage'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 function App() {
+
     const[cartItems, setCartItems]=useState([]);
+      const loadCart=async()=>{
+    const res=await axios.get('api/cart-items?expand=product')
+      setCartItems(res.data)
+  };
 useEffect(()=>{
-    
-     axios.get('api/cart-items?expand=product')
-        .then((res)=>setCartItems(res.data))
+
+  loadCart();
 },[]);
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage  cart={cartItems}/>} />
-      <Route path="/checkout" element={<CheckOut cart={cartItems} />} />
+      <Route path="/" element={<HomePage  cart={cartItems} loadCart={loadCart}/>} />
+      <Route path="/checkout" element={<CheckOut cart={cartItems} loadCart={loadCart} />} />
       <Route path="/orders" element={<OrdersPage cart={cartItems}/>} />
       <Route path="/tracking" element={<TrackingPage/>} />
     </Routes>
